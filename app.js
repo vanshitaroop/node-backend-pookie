@@ -5,6 +5,7 @@ import morgan from 'morgan';
 import cors from 'cors';
 import helmet from 'helmet';
 import routes from './src/routes/index.js';
+import passport from './src/config/passport.js';
 const app = express();
 const PORT = process.env.PORT || 5000;
 
@@ -16,7 +17,7 @@ app.use(helmet());
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
+app.use(passport.initialize());
 app.get("/", (req, res) => {
     res.send("I am listening");
 });
